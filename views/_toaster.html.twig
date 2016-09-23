@@ -1,0 +1,10 @@
+{% block toaster %}
+    <script type="text/javascript">
+        {% set levels = ['info', 'warning','error','success'] %}
+        {% for level in levels %}
+            {% for flashMessage in app.session.flashbag.get(level) %}
+                toastr['{{level}}']('{{flashMessage}}');
+            {% endfor %}
+        {% endfor %}
+    </script>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}Liste des personnages{% endblock %}
+
+{% block content %}
+    <h2 class="text-center">{{ block('title') }}</h2>
+    {% if app.user and is_granted('IS_AUTHENTICATED_FULLY') %}
+        {#<a href="{{ path('add_character') }}" class="btn btn-info btn-xs" title="Nouveau"><span class="glyphicon glyphicon-plus"></span> Nouveau personnage</a>#}
+        <a class="btn btn-info btn-xs btnNouveauPersonnageAjax" title="Nouveau" data-url="{{ path('prepare_character_form_ajax')}}"><span class="glyphicon glyphicon-plus"></span> Nouveau personnage</a>
+    {% endif %}
+    <div class="table-responsive">
+        <table class="table table-hover table-condensed dataTable" data-source-url="{{ path('character_list')}}">
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% include '_character_list.html.twig' %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    <script src="{{ app.request.basepath }}/js/index.js"></script>
+{% endblock %}

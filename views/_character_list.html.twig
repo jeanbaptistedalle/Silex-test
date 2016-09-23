@@ -1,0 +1,21 @@
+{% for character in characters %}
+    <tr>
+        <td>{{ character.name }}</td>
+        <td>
+            {% if app.user and is_granted('IS_AUTHENTICATED_FULLY') %}
+                {% if app.user and is_granted('ROLE_ADMIN') %}
+                    <a class="characterName btn btn-warning btn-xs btnEditerPersonnageAjax" 
+                       data-url="{{ path('prepare_character_form_ajax') }}" 
+                       data-id="{{character.id}}" 
+                       data-toggle="tooltip" 
+                       title='Editer'><span class='glyphicon glyphicon-edit'> </span></a>
+                {%endif%}
+                {#<a class="characterName btn btn-success btn-xs" href="{{ path('character', { 'id': character.id }) }}" tittle='Détail'><span class='glyphicon glyphicon-search'></span></a>
+                    {% if app.user and is_granted('ROLE_ADMIN') %}
+                    <a class="characterName btn btn-warning btn-xs" href="{{ path('edit_character', { 'id': character.id }) }}" tittle='Editer'><span class='glyphicon glyphicon-edit'></span></a>
+                    <a class="characterName btn btn-danger btn-xs" href="{{ path('delete_character', { 'id': character.id }) }}" tittle='Supprimer'><span class='glyphicon glyphicon-remove'></span></a>
+                    {% endif %}#}
+            {% endif %}
+        </td>
+    </tr>
+{% endfor %}
