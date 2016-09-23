@@ -1,5 +1,12 @@
 
-{{ form_errors(form)}}
+{% if errors|default([]) %}
+    <ul>
+        {% for error in errors %}
+            <li class="alert alert-danger">{{error}}</li>
+            {% endfor %}
+    </ul>
+{% endif %}
+{{form_errors(form)}}
 <div class="form-group">
     {{ form_label(form.name, null, { 'label_attr':  {
             'class': 'col-sm-4 control-label'

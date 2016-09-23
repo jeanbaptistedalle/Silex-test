@@ -5,7 +5,7 @@
             {% if app.user and is_granted('IS_AUTHENTICATED_FULLY') %}
                 {% if app.user and is_granted('ROLE_ADMIN') %}
                     <a class="characterName btn btn-warning btn-xs btnEditerPersonnageAjax" 
-                       data-url="{{ path('prepare_character_form_ajax') }}" 
+                       data-url="{{ path('prepare_character_form_ajax', {'id' : character.id}) }}" 
                        data-id="{{character.id}}" 
                        data-toggle="tooltip" 
                        title='Editer'><span class='glyphicon glyphicon-edit'> </span></a>

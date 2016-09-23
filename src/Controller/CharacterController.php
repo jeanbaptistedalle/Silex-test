@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 class CharacterController {
 
-    public function characterAction($id, Application $app) {
+    public function characterDetail($id, Application $app) {
         $character = $app['dao.character']->find($id);
         return $app['twig']->render('character.html.twig', array(
                     'character' => $character));
@@ -27,21 +27,7 @@ class CharacterController {
         return $app->redirect($app["url_generator"]->generate("home"));
     }
 
-    /**
-     * User login controller.
-     *
-     * @param Request $request Incoming request
-     * @param Application $app Silex application
-     */
-    /* public function loginAction(Request $request, Application $app) {
-      return $app['twig']->render('login.html.twig', array(
-      'error' => $app['security.last_error']($request),
-      'last_username' => $app['session']->get('_security.last_username'),
-      ));
-      } */
-
-    public function prepareCharacterFormAjax(Request $request, Application $app) {
-        $id = $request->request->get('id');
+    public function prepareCharacterFormAjax($id, Request $request, Application $app) {
         $character = $app['dao.character']->find($id);
         if ($character) {
             $title = "Editer un personnage";
